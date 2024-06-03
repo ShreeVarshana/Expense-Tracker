@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Donors List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Your existing styles ... */
+
+        body {
+            font-family: Arial, sans-serif; /* Update font family */
+            background-image: url("./images/im7.avif"); /* Change the URL to the correct path of your image */
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover ;
+        // filter: brightness(70%);
+        //opacity: 0.8;
+            margin-bottom: 80px;
+            padding: 0px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-family: "Service form", Arial, sans-serif; /* Update font family */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            font-family: "Service form", Arial, sans-serif; /* Update font family */
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .navbar a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .select-checkbox {
+            margin-top: 10px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .delete-button {
+            background-color: #d9534f;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <form id="deleteForm" th:action="@{/delete}" method="post">
+        <h2>Service form</h2> <!-- Update heading -->
+        <div class="navbar">
+            <a href="/entry">Home</a>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th><input type="checkbox" id="selectAll" class="select-checkbox" onclick="selectAll()"></th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>To be</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="do : ${market}">
+                <td><input type="checkbox" class="selectCheckbox" name="selectedIds" th:value="${do.id}"></td>
+                <td th:text="${do.date}"></td>
+                <td th:text="${do.category}"></td>
+                <td th:text="${do.amount}"></td>
+                <td><a th:href="@{'/edit/' + ${do.id}}">Update</a></td>
+                <td><a th:href="@{'/delete/'+${do.id}}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </form>
+</div>
+</body>
+</html>

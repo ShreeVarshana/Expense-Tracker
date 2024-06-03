@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      margin-left: 100px;
+      padding: 10px;
+      background-image: url("./images/img9.avif"); /* Change the URL to the correct path of your image */
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+    }
+    .container {
+      max-width: 400px;
+      margin: 10px;
+      padding: 20px;
+      /* background-color: rgba(255, 255, 255, 0.7);  Add opacity to the background container */
+      border-radius: 8px;
+      font-size: 20px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+      text-shadow: 0 0 3px #FF0000;
+    //text-decoration-line: underline;
+    //text-decoration-style: solid;
+      margin-bottom: 50px;
+      font-size: 35px;
+      font-family: Timesnewroman;
+      font-weight: bold;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 25px;
+      font-family: serif;
+    }
+    input[type="text"], input[type="number"], input[type="date"] {
+      width: calc(100% - 20px);
+      padding: 8px;
+      margin-bottom: 10px;
+    // box-sizing: border-box;
+      border: 1px;
+      border-style: outset;
+      border-radius: 7px;
+      border-width: 7px 2px;
+      font-size: 20px;
+      font-family: serif;;
+    }
+    input[type="submit"] {
+
+      background-color: #fdc239;
+      color: white;
+      padding: 10px ;
+      border: none;
+      cursor: pointer;
+      border-radius: 7px;
+      display: block;
+      width: calc(100% - 4px);
+      margin-top: 25px;
+    //text-decoration-line: underline;
+      text-decoration-style: solid;
+    //margin-bottom: 20px;
+      font-size: 25px;
+    // border-width: 2px 2px;
+      font-family: Georgia;
+
+    }
+    input[type="submit"]:hover {
+      background-color: #55d255;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>EXPENSE TRACKER SYSTEM</h2>
+  <form th:action="@{/save}" method="post" th:object="${market}">
+    <input type="hidden" th:field="*{id}">
+
+    <label for="bookedDate">Date:</label>
+    <input type="date" id="bookedDate" name="bookedDate" th:field="*{date}" required>
+
+    <label for="name">Category:</label>
+    <input type="text" id="name" name="name" th:field="*{category}" required>
+
+    <label for="area">Count:</label>
+    <input type="text" id="area" name="area" th:field="*{count}" required>
+
+    <label for="area">Amount:</label>
+    <input type="text" id name="area" th:field="*{amount}" required>
+
+    <input type="submit" value="ADD">
+  </form>
+</div>
+</body>
+</html>
